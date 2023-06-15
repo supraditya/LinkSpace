@@ -1,5 +1,5 @@
 class AddDescriptionToGroups < ActiveRecord::Migration[7.0]
   def change
-    add_column :groups, :desciption, :text
+    add_column :groups, :description, :text
   end
 end

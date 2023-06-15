@@ -1,0 +1,6 @@
+<h1> Users for <%= @group.name %> </h1>
+<%= link_to "Back to group", group_path(@group)%>
+<% @group_users.each do |member| %>
+  <%= member.uniqname %>
+<% end %>
+<%= link_to "Add User", new_group_group_user_path(@group), class: "rounded-md" %>
