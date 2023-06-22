@@ -1,9 +1,13 @@
-<h1> My Groups </h1>
+<h1 class="text-3xl"> My Groups </h1>
 <div class="flex flex-col items-center">
   <% @groups.each do |group| %>
-    <div class="border shadow-md p-2 my-2 rounded-md w-full">
-      <h2><%= link_to group.name, group %></h2>
-      <p><%= group.description %></p>
+    <div class="border shadow-md my-2 rounded-md w-full">
+      <%= link_to group do %>
+        <div class="p-2">
+          <h2 class="text-xl font-medium hover:underline"><%= group.name %></h2>
+          <p><%= group.description %></p>
+        </div>
+      <%end%>
     </div>
   <% end %>
 </div>

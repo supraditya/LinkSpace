@@ -1,2 +1,11 @@
-<%= @group.name %>
-<%= link_to "Members", group_group_users_path(@group)%>
+<%= link_to groups_path(@groups) do%>
+  <button class="btn-primary mb-4">Back to My Groups</button>
+<%end%>
+<div class="flex justify-between">
+  <h1 class="text-4xl"> <%= @group.name %> </h1>
+  <%= link_to group_group_users_path(@group) do%>
+    <button class="btn-secondary">Members</button>
+  <%end%>
+</div>
+<div class="">
+</div>
