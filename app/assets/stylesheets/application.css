@@ -1,15 +1,99 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+    /*
+    * This is a manifest file that'll be compiled into application.css, which will include all the files
+    * listed below.
+    *
+    * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+    * vendor/assets/stylesheets directory can be referenced here using a relative path.
+    *
+    * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+    * compiled file so the styles you add here take precedence over styles defined in any other CSS
+    * files in this directory. Styles in this file should be added after the last require_* statement.
+    * It is generally better to create a new file per style scope.
+    *
+    *= require_tree .
+    *= require_self
+    */
+
+    form.button_to {
+        display: inline;
+    }
+    
+    form:not([class="button_to"]) {
+        max-width: 503px;
+        margin-top: 1.5rem;
+    }
+    
+    form:not([class="button_to"]) label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: block;
+    }
+    
+    form:not([class="button_to"]) input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="submit"]),
+    form:not([class="button_to"]) textarea,
+    form:not([class="button_to"]) select:not(.date) {
+        margin-bottom: 0.75rem;
+        width: 100%;
+        height: 100%;
+    }
+    
+    form:not([class="button_to"]) select.date {
+        width: auto;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+    }
+    
+    form:not([class="button_to"]) input[type="submit"] {
+        display: block;
+        width: 100%;
+        margin-top: 1.5rem;
+        background-color: rgb(74, 222, 128);
+        color: #fff;
+        padding: 
+    }
+    
+    form:not([class="button_to"]) input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+    
+    form:not([class="button_to"]) input[type="checkbox"] + label {
+        padding-left: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    form:not([class="button_to"]) input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+    
+    form:not([class="button_to"]) input[type="radio"] + label {
+        margin-bottom: 0.6rem;
+        font-weight: 400;
+    }
+    
+    form:not([class="button_to"]) input[type="file"] {
+        margin-bottom: 0.75rem;
+        width: 100%;
+    }
+    
+    form:not([class="button_to"]) .star,
+    form:not([class="button_to"]) .checkboxes {
+        margin-top: 1.5rem;
+    }
+    
+    form:not([class="button_to"]) div.field_with_errors {
+        display: inline;
+    }
+    
+    form:not([class="button_to"]) div.field_with_errors label {
+        color: #ff0000; /* Replace with error color */
+    }
+    
+    form:not([class="button_to"]) div.field_with_errors input,
+    form:not([class="button_to"]) div.field_with_errors textarea,
+    form:not([class="button_to"]) div.field_with_errors select {
+        background: #ffcccc !important; /* Replace with error background color */
+    }
+    
+    
