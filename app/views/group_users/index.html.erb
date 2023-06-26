@@ -1,13 +1,16 @@
 <%= link_to group_path(@group) do%>
-  <button class="btn-primary mb-4">Back to <%=@group.name%></button>
+  <button class="btn-secondary mb-4">Back to <%=@group.name%></button>
 <%end%>
 <div class="flex justify-between mb-4">
   <h1 class="text-4xl"> Users for <%= @group.name %> </h1>
   <%# <%= link_to group_group_users_path(@group) do%>
     <%# TODO: Add path to new user creation %>
-    <button class="btn-success">Add User</button>
+    <button class="btn-primary">Add Member</button>
     <%# <%end%>
   </div>
   <% @group_users.each do |member| %>
-    <p class="text-xl"><%= member.uniqname %></p>
+    <div class="border shadow-md my-2 rounded-md w-full p-4 flex justify-between items-center">
+      <p class="text-xl"><%= member.uniqname %></p>
+      <button class="btn-danger">Remove</button>
+    </div>
   <% end %>
