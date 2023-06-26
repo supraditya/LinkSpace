@@ -7,5 +7,17 @@
     <button class="btn-primary">View Members</button>
   <%end%>
 </div>
-<div class="">
+<div class="flex justify-between mb-4">
+  <h1 class="text-4xl"> Links for <%= @group.name %> </h1>
+  <%= link_to new_group_link_path(@group) do %>
+    <button class="btn-primary">Add Links</button>
+  <% end %>
 </div>
+<% @links.each do |link| %>
+  <div class="border shadow-md my-2 rounded-md w-full p-4 flex justify-between items-center">
+    <p class="text-xl"><%= link.url %></p>
+    <%= link_to group_link_path(@group, link), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
+      <button class="btn-danger">Remove</button>
+    <%end %>
+  </div>
+<% end %>

@@ -1,6 +1,9 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @groups = Group.all
+    @group_users = GroupUser.all.where(user_id: current_user.id)
+    @groups = @group_users.map(&:group)
   end
 
   def new
@@ -14,12 +17,14 @@ class GroupsController < ApplicationController
   end
 
   def show
+    #To-do: authenticate
     @group = Group.find(params[:id])
     @group_users = @group.group_users
     @links = @group.links
   end
 
   def destroy
+    #To-do: authenticate
     @group = Group.find(params[:id])
     @group.destroy
     redirect_to groups_path
