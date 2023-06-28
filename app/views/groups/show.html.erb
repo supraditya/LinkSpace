@@ -15,8 +15,19 @@
 <div class="grid grid-cols-4 gap-3">
   <% @links.each do |link| %>
     <div class="border shadow-md my-2 min-h-[200px] rounded-md flex-col p-4 flex justify-between items-center">
-      <a class="text-xl hover:underline" href=<%= link.url %> target="_blank" rel="noreferrer"><%= link.url %></a>
-      <%= link_to group_link_path(@group, link), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
+      <% if link[:metadata] %>
+        <% if !link[:metadata]["images"].empty? %>
+          <%= image_tag link[:metadata]["images"][0], class: "w-auto h-1/2"%>
+        <% end %>
+        <% if link[:metadata]["title"] %>
+          <h1 class="text-xl"> <%= link[:metadata]["title"]%></h1>
+        <% else %>
+          <h1 class="text-xl"> <%= link[:link].name %></h1>
+        <% end %>
+      <% end %>
+      <p> <%= truncate(link[:metadata]["description"], length: 72)%></p>
+      <%= link_to link[:link].url, link[:link].url, class: "text-xl hover:underline", target: :_blank%>
+      <%= link_to group_link_path(@group, link[:link]), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
         <button class="btn-danger">Remove</button>
       <%end %>
     </div>

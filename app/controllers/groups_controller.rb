@@ -20,7 +20,9 @@ class GroupsController < ApplicationController
     #To-do: authenticate
     @group = Group.find(params[:id])
     @group_users = @group.group_users
-    @links = @group.links
+    @links = @group.links.map do |link|
+      { link: link, metadata: link.fetch_metadata }
+    end
   end
 
   def destroy
