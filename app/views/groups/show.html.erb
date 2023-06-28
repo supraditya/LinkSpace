@@ -12,11 +12,13 @@
     <%end%>
   </div>
 </div>
-<% @links.each do |link| %>
-  <div class="border shadow-md my-2 rounded-md w-full p-4 flex justify-between items-center">
-    <p class="text-xl"><%= link.url %></p>
-    <%= link_to group_link_path(@group, link), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
-      <button class="btn-danger">Remove</button>
-    <%end %>
-  </div>
-<% end %>
+<div class="grid grid-cols-4 gap-3">
+  <% @links.each do |link| %>
+    <div class="border shadow-md my-2 min-h-[200px] rounded-md flex-col p-4 flex justify-between items-center">
+      <a class="text-xl hover:underline" href=<%= link.url %> target="_blank" rel="noreferrer"><%= link.url %></a>
+      <%= link_to group_link_path(@group, link), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
+        <button class="btn-danger">Remove</button>
+      <%end %>
+    </div>
+  <% end %>
+</div>
