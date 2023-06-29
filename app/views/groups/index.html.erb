@@ -1,6 +1,7 @@
 <% if current_user %>
   <h1 class="text-2xl">Welcome, <%=current_user.email%></h1>
 <% end %>
+<%= link_to 'Create New Group', new_group_path %>
 <h1 class="text-3xl"> My Groups </h1>
 <div class="flex flex-col items-center">
   <% @groups.each do |group| %>

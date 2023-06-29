@@ -12,8 +12,12 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.save
-    redirect_to @group
+    @group_user = GroupUser.new(user_id: current_user.id, group: @group, admin: true)
+    if @group.save && @group_user.save
+      redirect_to @group
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -31,4 +35,13 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to groups_path
   end
+
+  private
+  def group_params
+    params.require(:group).permit(:name, :description)
+  end
+
 end
+
+
+
