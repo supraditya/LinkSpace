@@ -5,6 +5,12 @@ class GroupUsersController < ApplicationController
     @group_users = @group.group_users
   end
 
+  def destroy
+    @group_user = @group.group_users.find(params[:id])
+    @group_user.destroy
+    redirect_to root_path
+  end
+
   private
 
   def set_group

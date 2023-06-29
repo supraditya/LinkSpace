@@ -10,6 +10,9 @@
     <%= link_to group_group_users_path(@group) do%>
       <button class="btn-primary-outline">View Members</button>
     <%end%>
+    <%= link_to group_group_user_path(@group, current_user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
+      <button class="btn-danger">Leave Group</button>
+    <%end %>
   </div>
 </div>
 <div class="grid grid-cols-4 gap-3">
