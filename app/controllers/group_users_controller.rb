@@ -6,10 +6,11 @@ class GroupUsersController < ApplicationController
   end
 
   def destroy
-    @group_user = @group.group_users.find(params[:id])
-    @group_user.destroy
-    if @group.group_users.count == 0
+    if @group.group_users.count == 1
       @group.destroy
+    else
+      @group_user = @group.group_users.find(params[:user_id])
+      @group_user.destroy
     end
     redirect_to root_path
   end

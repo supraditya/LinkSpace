@@ -11,6 +11,8 @@
   <% @group_users.each do |member| %>
     <div class="border shadow-md my-2 rounded-md w-full p-4 flex justify-between items-center">
       <p class="text-xl"><%= member.uniqname %></p>
-      <button class="btn-danger">Remove</button>
+      <% if member.user_id != current_user.id %>
+        <button class="btn-danger">Remove</button>
+      <% end %>
     </div>
   <% end %>
