@@ -32,12 +32,12 @@
       <% end %>
       <p> <%= truncate(link[:metadata]["description"], length: 72)%></p>
       <div class="mt-3 flex w-full justify-around">
-        <%= link_to link[:link].url, target: :_blank do %>
-          <button class="btn-primary">Visit</button>
-        <% end %>
         <%= link_to group_link_path(@group, link[:link]), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
           <button class="btn-danger">Remove</button>
         <%end %>
+        <%= link_to link[:link].url, target: :_blank do %>
+          <button class="btn-primary">Visit</button>
+        <% end %>
       </div>
     </div>
   <% end %>
