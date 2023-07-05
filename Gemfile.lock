@@ -94,6 +94,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.8)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -240,6 +243,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  devise_invitable (~> 2.0.0)
   httparty (~> 0.21.0)
   importmap-rails
   jbuilder
