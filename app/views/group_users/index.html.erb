@@ -3,8 +3,8 @@
 <%end%>
 <div class="flex justify-between mb-4">
   <h1 class="text-4xl"> Users for <%= @group.name %> </h1>
-  <%= link_to new_group_group_user_path(@group) do%>
-    <button class="btn-primary">Add a Member</button>
+  <%= link_to new_user_invitation_path do%>
+    <button class="btn-primary">Invite a Member</button>
   <%end%>
 </div>
 <% @group_users.each do |member| %>
