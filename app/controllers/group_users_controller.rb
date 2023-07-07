@@ -6,13 +6,15 @@ class GroupUsersController < ApplicationController
   end
 
   def destroy
+    @group_user = @group.group_users.find(params[:id])
+
     if @group.group_users.count == 1
       @group.destroy
+      redirect_to root_path
     else
-      @group_user = @group.group_users.find(params[:user_id])
       @group_user.destroy
+      redirect_to @group
     end
-    redirect_to root_path
   end
 
   def new
@@ -23,6 +25,12 @@ class GroupUsersController < ApplicationController
     @user = User.find_by(email: group_user_params[:email])
 
     if @user
+      if @group.group_users.where(user_id: @user.id).exists?
+        @group_user = @group.group_users.new
+        render :new, status: :unprocessable_entity
+        return
+      end
+
       @group_user = @group.group_users.new(user: @user, admin: group_user_params[:admin])
       if @group_user.save
         redirect_to @group
@@ -35,7 +43,7 @@ class GroupUsersController < ApplicationController
       if @group_user.save
         redirect_to @group
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
   end
