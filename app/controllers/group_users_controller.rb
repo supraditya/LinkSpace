@@ -13,7 +13,7 @@ class GroupUsersController < ApplicationController
       redirect_to root_path
     else
       @group_user.destroy
-      redirect_to @group
+      redirect_to  group_group_users_path(@group)
     end
   end
 
