@@ -24,13 +24,15 @@ class GroupUsersController < ApplicationController
   def create
     @user = User.find_by(email: group_user_params[:email])
 
+    # If user already exists
     if @user
+      # If the user is already part of said group
       if @group.group_users.where(user_id: @user.id).exists?
         @group_user = @group.group_users.new
         render :new, status: :unprocessable_entity
         return
       end
-
+      # If not a part of the group, just add the existing user to the group
       @group_user = @group.group_users.new(user: @user, admin: group_user_params[:admin])
       if @group_user.save
         redirect_to @group
@@ -38,6 +40,7 @@ class GroupUsersController < ApplicationController
         render :new
       end
     else
+      # If the user does not exist, send an email invite
       @user = User.invite!({ email: group_user_params[:email] }, current_user)
       @group_user = @group.group_users.new(user: @user, admin: group_user_params[:admin])
       if @group_user.save
