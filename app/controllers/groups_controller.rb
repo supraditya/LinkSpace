@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_group_user, only: [:show]
 
   def index
     @group_users = GroupUser.all.where(user_id: current_user.id)
@@ -37,11 +38,15 @@ class GroupsController < ApplicationController
   end
 
   private
+
   def group_params
     params.require(:group).permit(:name, :description)
   end
 
+  def authenticate_group_user
+    @group = Group.find(params[:id])
+    unless @group.group_users.where(user_id: current_user.id).exists?
+      redirect_to groups_path
+    end
+  end
 end
-
-
-
