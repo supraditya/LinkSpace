@@ -12,19 +12,21 @@
 <% @group_users.each do |member| %>
   <div class="border shadow-md my-2 rounded-md w-full p-4 flex justify-between items-center">
     <p class="text-xl"><%= member.uniqname %></p>
-    <% if @current_group_user_role %>
-      <%= link_to group_group_user_path(@group, member), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
-        <button class="btn-danger">Remove</button>
-      <%end%>
-      <% if member.admin? && member != current_user %>
-        <%= link_to remove_admin_group_group_user_path(@group, member), data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } do %>
-          <button class="btn-danger">Remove Admin</button>
+    <div>
+      <% if @current_group_user_role %>
+        <% if member.admin? && member != current_user %>
+          <%= link_to remove_admin_group_group_user_path(@group, member), data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } do %>
+            <button class="btn-warning">Revoke Admin Role</button>
+          <% end %>
+        <% else %>
+          <%= link_to make_admin_group_group_user_path(@group, member), data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } do %>
+            <button class="btn-primary">Grant Admin Role</button>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= link_to make_admin_group_group_user_path(@group, member), data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } do %>
-          <button class="btn-primary">Make Admin</button>
-        <% end %>
-      <% end %>
+        <%= link_to group_group_user_path(@group, member), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
+          <button class="btn-danger">Kick</button>
+        <%end%>
+      </div>
     <% end %>
   </div>
 <% end %>
