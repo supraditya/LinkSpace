@@ -5,6 +5,10 @@ class GroupsController < ApplicationController
   def index
     @group_users = GroupUser.all.where(user_id: current_user.id)
     @groups = @group_users.map(&:group)
+    @links={}
+    @groups.each do |group| 
+      @links[group] = group.links.sort_by(&:created_at).reverse.take(3)
+    end
   end
 
   def new

@@ -14,6 +14,37 @@
         <div class="p-2">
           <h2 class="text-xl font-medium hover:underline"><%= group.name %></h2>
           <p><%= group.description %></p>
+          <div>
+          </div>
+        </div>
+        <div class="flex">
+          <%@links[group].each do |link|%>
+            <%= link_to link.url, target: :_blank do %>
+              <div class="border shadow-md my-2 mx-2 min-h-[150px] rounded-md flex-col p-4 flex justify-between items-center">
+                <div class="text-center">
+                  <% if link[:metadata] %>
+                    <% if !link[:metadata]["images"].empty? %>
+                      <%= image_tag link[:metadata]["images"][0], class: "h-24 mb-2 mx-auto"%>
+                    <%else%>
+                      <%= image_tag 'link_placeholder.svg', class: "h-24 mb-2 mx-auto"%>
+                    <% end %>
+                    <% if link[:metadata]["title"] %>
+                      <h1 class="text-xl mb-3"> <%= link[:metadata]["title"]%></h1>
+                    <% else %>
+                      <h1 class="text-xl mb-3"> <%= link.name %></h1>
+                    <% end %>
+                    <% if link[:metadata]["description"] %>
+                      <p> <%= truncate(link[:metadata]["description"], length: 72)%></p>
+                    <%end%>
+                  <%else%>
+                    <%= image_tag 'link_placeholder.svg', class: "h-24 mb-2 mx-auto"%>
+                    <h1 class="text-xl mb-3"> <%= link.name %></h1>
+                    <p class="italic text-gray-600">This link has no description</p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <%end%>
         </div>
       <%end%>
     </div>
