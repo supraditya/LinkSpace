@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  include HTTParty
   before_action :set_group
 
   def destroy
@@ -12,7 +13,22 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = @group.links.create(link_params)
+    @link = @group.links.build(link_params) # build the link, don't save it yet
+
+    response = HTTParty.get("https://jsonlink.io/api/extract?url=#{@link.url}")
+
+    if response.code == 200
+      if response.parsed_response["images"].present?
+        @link.image_url = response.parsed_response["images"][0]
+      end
+      if response.parsed_response["title"].present?
+        @link.name = response.parsed_response["title"]
+      end
+      if response.parsed_response["description"].present?
+        @link.description = response.parsed_response["description"]
+      end
+    end
+
     if @link.save
       redirect_to group_path(@group)
     else
@@ -27,6 +43,6 @@ class LinksController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:name, :url)
+    params.require(:link).permit(:name, :url, :group_id, :description, :image_url)
   end
 end

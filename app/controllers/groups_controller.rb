@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
   def index
     @group_users = GroupUser.all.where(user_id: current_user.id)
     @groups = @group_users.map(&:group)
-    @links={}
-    @groups.each do |group| 
+    @links = {}
+    @groups.each do |group|
       @links[group] = group.links.sort_by(&:created_at).reverse.take(3)
     end
   end
@@ -26,16 +26,12 @@ class GroupsController < ApplicationController
   end
 
   def show
-    #To-do: authenticate
     @group = Group.find(params[:id])
     @group_users = @group.group_users
-    @links = @group.links.map do |link|
-      { link: link, metadata: link.fetch_metadata }
-    end
+    @links = @group.links
   end
 
   def destroy
-    #To-do: authenticate
     @group = Group.find(params[:id])
     @group.destroy
     redirect_to groups_path
