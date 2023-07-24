@@ -18,9 +18,12 @@
           </div>
         </div>
         <div class="flex">
+          <% if @links[group].empty? %>
+            <p class="italic text-gray-600 px-2 pb-2" >This group has no links</p>
+          <%end%>
           <%@links[group].each do |link|%>
             <%= link_to link.url, target: :_blank do %>
-              <div class="border shadow-md my-2 mx-2 min-h-[250px] max-w-[200px] rounded-md flex-col p-4 flex justify-between items-center">
+              <div class="border shadow-md my-2 mx-2 h-64 w-72 rounded-md flex-col p-4 flex justify-between items-center">
                 <div class="text-center">
                   <% if link.image_url %>
                     <%= image_tag link.image_url, class: "h-24 mb-2 mx-auto"%>
@@ -28,7 +31,7 @@
                     <%= image_tag 'link_placeholder.svg', class: "h-24 mb-2 mx-auto"%>
                   <% end %>
                   <h1 class="text-xl mb-3"> <%= link.name %></h1>
-                  <p class="italic"> Created <%= time_ago_in_words(link.created_at) %> ago </p>
+                  <p class="italic text-gray-600"> Created <%= time_ago_in_words(link.created_at) %> ago </p>
                 </div>
               </div>
             <% end %>

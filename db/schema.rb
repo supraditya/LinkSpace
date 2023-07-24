@@ -34,7 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_160652) do
     t.integer "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position"
     t.text "description"
     t.string "image_url"
     t.index ["group_id"], name: "index_links_on_group_id"
