@@ -2,6 +2,9 @@
   <%= f.label :name, autofocus: true %>
   <%= f.text_field :name %>
   <%= f.label :url %>
-  <%= f.text_field :url %>
+  <div class="flex">
+    <%= f.text_field :url, id: 'link-field' %>
+    <button id="paste-button" class="btn-primary-outline w-3/4 h-min ml-3">Paste from clipboard</button>
+  </div>
   <%=f.submit class: 'btn-success'%>
 <%end%>
