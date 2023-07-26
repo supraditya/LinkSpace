@@ -31,7 +31,7 @@
                     <%= image_tag 'link_placeholder.svg', class: "h-24 mb-2 mx-auto"%>
                   <% end %>
                   <h1 class="text-xl mb-3"> <%= link.name %></h1>
-                  <p class="italic text-gray-600"> Created <%= time_ago_in_words(link.created_at) %> ago </p>
+                  <p class="italic text-gray-600"> Created <%= time_ago_in_words(link.created_at) %> ago by <%=link.contributor%> </p>
                 </div>
               </div>
             <% end %>

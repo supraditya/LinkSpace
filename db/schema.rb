@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_160652) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_193752) do
   create_table "group_users", force: :cascade do |t|
     t.integer "group_id", null: false
     t.integer "user_id", null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_160652) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.string "image_url"
+    t.string "contributor", null: false
     t.index ["group_id"], name: "index_links_on_group_id"
   end
 

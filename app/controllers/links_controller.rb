@@ -14,6 +14,7 @@ class LinksController < ApplicationController
 
   def create
     @link = @group.links.build(link_params) # build the link, don't save it yet
+    @link.contributor=current_user.email
 
     response = HTTParty.get("https://jsonlink.io/api/extract?url=#{@link.url}")
 
