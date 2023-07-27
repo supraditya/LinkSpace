@@ -8,6 +8,9 @@
   <%end%>
 </div>
 <div class="flex flex-col items-center">
+  <% if @groups.count == 0 %>
+    <div class="italic text-gray-600 px-2 pb-2 h-80 flex items-center" >You aren't a part of any groups yet. Request for a group invite from another user, or create a new one!</div>
+  <%end%>
   <% @groups.each do |group| %>
     <div class="border shadow-md my-2 rounded-md w-full">
       <%= link_to group do %>
