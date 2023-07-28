@@ -1,10 +1,10 @@
-<%= link_to groups_path(@groups) do%>
-  <button class="btn-secondary mb-4">Back to My Groups</button>
+<%= link_to group_group_users_path(@group) do%>
+  <button class="btn-secondary mb-4">Back to View Members</button>
 <%end%>
 <h1 class="text-3xl">Add User to Group</h1>
 <ul class="list-disc ml-4 mt-1.5">
-  <li>If the user is not currently on linkspace, we will send them an email invite</li>
-  <li>If they are already on linkspace, they will directly be added to the group</li>
+  <li>If the user is not currently on LinkSpace, we will send them an email invite</li>
+  <li>If they are already on LinkSpace, they will directly be added to the group</li>
 </ul>
 <%= form_with(model: [@group, @group_user], local: true) do |form| %>
   <div>

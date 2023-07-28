@@ -10,8 +10,18 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <h1 class="text-4xl font-bold container mx-auto px-5 mt-10">LinkSpace</h1>
-    <main class="container mx-auto mt-12 px-5">
+    <div class="flex justify-between items-center px-24 py-5">
+      <%= link_to root_path do %>
+        <h1 class="text-4xl font-bold container">LinkSpace</h1>
+      <%end%>
+      <% if current_user%>
+        <div class="flex items-center">
+          <p class="mr-2"><%= current_user.email %></p>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn-danger-outline'  %>
+        </div>
+      <%end%>
+    </div>
+    <main class="container mx-auto mt-8 px-5">
       <%= yield %>
     </main>
   </body>
