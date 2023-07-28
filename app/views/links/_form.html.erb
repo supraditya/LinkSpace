@@ -4,7 +4,7 @@
   <%= f.label :url %>
   <div class="flex">
     <%= f.text_field :url, id: 'link-field' %>
-    <button id="paste-button" class="btn-primary-outline w-3/4 h-min ml-3">Paste from clipboard</button>
+    <button id="paste-button" onclick="event.preventDefault();" class="btn-primary-outline w-3/4 h-min ml-3">Paste from clipboard</button>
   </div>
   <%=f.submit class: 'btn-success'%>
 <%end%>
